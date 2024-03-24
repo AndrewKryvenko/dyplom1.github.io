@@ -103,25 +103,6 @@ let btn91 = document.getElementById("btn91");
 let btn92 = document.getElementById("btn92");
 
 
-// Получаем все кнопки с классом addButton
-let buttons = document.querySelectorAll(".addButton");
-
-// Проходим по каждой кнопке и назначаем обработчик события click
-buttons.forEach(function(button, index) {
-    button.addEventListener("click", function() {
-        // Создаем текст для отображения в tg.MainButton
-        let text = "Ви обрали " + (index + 1) + "!";
-
-        if (tg.MainButton.isVisible) {
-            tg.MainButton.hide();
-        } else {
-            tg.MainButton.setText(text);
-            item = (index + 1).toString(); // Индекс начинается с 0, поэтому добавляем 1
-            tg.MainButton.show();
-        }
-    });
-});
-
 btn1.addEventListener("click", function(){
 	if (tg.MainButton.isVisible) {
 		tg.MainButton.hide();
@@ -1133,6 +1114,29 @@ btn92.addEventListener("click", function(){
 	}
 });
 
+////////////// КУПИТЬ //////////////////////
+document.addEventListener("DOMContentLoaded", function() {
+    const buyIcon = document.querySelector('.buy-icon'); // Находим иконку "Купить"
+    const quantityBadge = document.createElement('div'); // Создаем элемент для отображения количества выбранных товаров
+    quantityBadge.classList.add('quantity-badge'); // Добавляем класс для стилизации
+    quantityBadge.innerText = "0"; // Изначально количество товаров равно 0
+    buyIcon.parentNode.insertBefore(quantityBadge, buyIcon.nextSibling); // Вставляем элемент после иконки "Купить"
+
+    let totalQuantity = 0; // Переменная для хранения общего количества выбранных товаров
+
+    // Обработчик события для кнопки "Add"
+    const addButton = document.querySelectorAll('.addButton'); // Находим все кнопки "Add"
+    addButton.forEach(button => {
+        button.addEventListener('click', function() {
+            const quantityDisplay = button.parentElement.querySelector('.quantity'); // Находим элемент, отображающий количество товаров
+            const quantity = parseInt(quantityDisplay.innerText); // Получаем текущее количество товаров и преобразуем его в число
+            totalQuantity += quantity; // Увеличиваем общее количество товаров на количество выбранных этим кликом
+            quantityBadge.innerText = totalQuantity; // Обновляем отображаемое количество товаров
+        });
+    });
+});
+///////////////////////////////////////////
+
 
 // КНОПКИ КОЛИЧЕСТВА
 ///////////////////////////////////////////////////////////////////////
@@ -1149,7 +1153,7 @@ function updateQuantity(increment, index) {
     if (increment) {
         quantity++;
     } else {
-        if (quantity > 0) {
+        if (quantity > 1) {
             quantity--;
         }
     }
