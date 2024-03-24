@@ -3,7 +3,7 @@ body {
 	padding: 0;
 	font-size: 18px;
 	color: var(--tg-theme-text-color);
-	background: #FFF;
+	background: var(--tg-theme-bg-color);
 }
 .menu-icon {
     position: fixed;
@@ -16,12 +16,27 @@ body {
     display: block;
     margin-bottom: 10px;
     cursor: pointer;
+    
 }
+
+.buy-icon {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    background-size: cover;
+    transition: transform 0.3s ease;
+}
+.buy-icon:hover {
+    transform: scale(1.1);
+  }
 
 .container {
 	max-width: 300px;
-    margin-left: 100px;
+    margin-left: 70px;
 }
+
 
 .inner {
     display: grid;
@@ -31,7 +46,7 @@ body {
 }
 
 .img {
-	width: 100px;
+	max-width: 150px;
     height: 100px; 
     object-fit: cover; 
 }
@@ -39,6 +54,12 @@ body {
 .item {
 	text-align: center;
     align-self: start; /* Начало каждого элемента с верхнего края своей ячейки сетки */
+    grid-auto-rows: min-content; /* Автоматически рассчитывает высоту ячеек сетки на основе содержимого */
+    align-items: start; /* Выравнивание элементов по верхнему краю ячеек сетки */
+}
+
+.menu-clicked .inner {
+    margin-left: 10px; /* Устанавливаем отступ, когда нажата иконка "Меню" */
 }
 
 figcaption {
@@ -123,6 +144,7 @@ figcaption {
     font-size: 18px;
     margin-left: 5px;
     margin-right: 5px;
+    color: #292929;
 }
 
 .plus-btn:hover, .minus-btn:hover {
@@ -151,12 +173,11 @@ figcaption {
     position: fixed;
     top: 0;
     left: 0;
-    width: 50px;
+    width: 45px;
     height: 100vh;
-    background-color: #fff0d4;
-    padding: 20px;
-    border-right: 1px solid #ccc; /* Контур */
-    box-shadow: 0 0 10px rgba(255, 238, 219);
+    background-color: #ffffff;
+    padding: 10px;
+    border-right: 2px solid rgb(197, 197, 197); /* Контур */
 }
 
 .food-icon {
