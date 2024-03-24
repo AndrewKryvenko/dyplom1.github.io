@@ -17,6 +17,7 @@
         <img src="dessert-icon.png" alt="Десерти" class="food-icon" data-food="dessert">
         <img src="drink-icon.png" alt="Напої" class="food-icon" data-food="drinks">
         <img src="coffee-icon.png" alt="Кава" class="food-icon" data-food="coffee">
+        <img src="buy-icon.png" alt="Купити" class="buy-icon" data-food="buy">
     </div>
 
     <script>
@@ -45,6 +46,48 @@
         });
     </script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const addButton = document.querySelectorAll('.addButton');
+            const buyIcon = document.querySelector('.buy-icon');
+            const items = document.querySelectorAll('.item');
+            const container = document.querySelector('.container');
+    
+            let selectedFoodIndexes = []; // Массив для хранения индексов выбранных товаров
+    
+            addButton.forEach((button, index) => {
+                button.addEventListener('click', function() {
+                    selectedFoodIndexes.push(index); // Добавляем индекс выбранного товара в массив
+                });
+            });
+    
+            buyIcon.addEventListener('click', function() {
+                if (selectedFoodIndexes.length > 0) {
+                    container.innerHTML = ''; // Очищаем контейнер перед добавлением выбранных товаров
+    
+                    selectedFoodIndexes.forEach(index => {
+                        const selectedItem = items[index].cloneNode(true); // Клонируем выбранный товар
+                        container.appendChild(selectedItem); // Добавляем клонированный товар в контейнер
+                    });
+    
+                    // Показываем контейнер с выбранными товарами
+                    container.style.display = 'flex';
+                    container.style.
+    
+                    // Скрываем все товары, кроме выбранных
+                    items.forEach((item, index) => {
+                        if (!selectedFoodIndexes.includes(index)) {
+                            item.style.display = 'none';
+                        }
+                    });
+                } else {
+                    alert("Пожалуйста, сначала выберите товар.");
+                }
+            });
+        });
+    </script>
+
+
 	<div class="container">
 		<div class="inner">
 			<div class="item burgers" data-initial-price="58"> <!-- Добавляем атрибут data-price с ценой -->
@@ -56,7 +99,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn1">Add</button> <!-- Изменяем id на класс addButton -->
+                <button class="btn addButton" id="btn1">Додати</button> <!-- Изменяем id на класс addButton -->
             </div>
 
             <div class="item burgers" data-initial-price="68">
@@ -68,7 +111,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn2">Add</button>
+                <button class="btn addButton" id="btn2">Додати</button>
             </div>
 
             <div class="item burgers" data-initial-price="105">
@@ -80,7 +123,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn3">Add</button>
+                <button class="btn addButton" id="btn3">Додати</button>
             </div>
 
             <div class="item burgers" data-initial-price="125">
@@ -92,7 +135,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn4">Add</button>
+                <button class="btn addButton" id="btn4">Додати</button>
             </div>
 
             <div class="item burgers" data-initial-price="196">
@@ -104,7 +147,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn5">Add</button>
+                <button class="btn addButton" id="btn5">Додати</button>
             </div>
 
             <div class="item burgers" data-initial-price="108">
@@ -116,7 +159,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn6">Add</button>
+                <button class="btn addButton" id="btn6">Додати</button>
             </div>
 
             <div class="item burgers" data-initial-price="209">
@@ -128,7 +171,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn7">Add</button>
+                <button class="btn addButton" id="btn7">Додати</button>
             </div>
 
             <div class="item burgers" data-initial-price="106">
@@ -140,7 +183,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn8">Add</button>
+                <button class="btn addButton" id="btn8">Додати</button>
             </div>
 
             <div class="item burgers" data-initial-price="141">
@@ -152,7 +195,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn9">Add</button>
+                <button class="btn addButton" id="btn9">Додати</button>
             </div>
 
             <div class="item burgers" data-initial-price="214">
@@ -164,7 +207,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn10">Add</button>
+                <button class="btn addButton" id="btn10">Додати</button>
             </div>
 
             <div class="item burgers" data-initial-price="213">
@@ -176,7 +219,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn11">Add</button>
+                <button class="btn addButton" id="btn11">Додати</button>
             </div>
 
             <div class="item burgers" data-initial-price="40">
@@ -188,7 +231,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn12">Add</button>
+                <button class="btn addButton" id="btn12">Додати</button>
             </div>
 
             <div class="item burgers" data-initial-price="125">
@@ -200,7 +243,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn13">Add</button>
+                <button class="btn addButton" id="btn13">Додати</button>
             </div>
 
             <div class="item burgers" data-initial-price="136">
@@ -212,7 +255,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn14">Add</button>
+                <button class="btn addButton" id="btn14">Додати</button>
             </div>
 
             <div class="item potato" data-initial-price="79">
@@ -224,7 +267,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn15">Add</button>
+                <button class="btn addButton" id="btn15">Додати</button>
             </div>
 
             <div class="item potato" data-initial-price="64">
@@ -236,7 +279,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn16">Add</button>
+                <button class="btn addButton" id="btn16">Додати</button>
             </div>
 
             <div class="item potato" data-initial-price="52">
@@ -248,7 +291,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn17">Add</button>
+                <button class="btn addButton" id="btn17">Додати</button>
             </div>
 
             <div class="item potato" data-initial-price="90">
@@ -260,55 +303,55 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn18">Add</button>
+                <button class="btn addButton" id="btn18">Додати</button>
             </div>
 
             <div class="item nuggets" data-initial-price="64">
                 <img src="ng1.jpg" alt="" class="img">
-                <figcaption>Чікен МакНагетс, <br> 4шт</figcaption>
+                <figcaption>Чікен <br> МакНагетс, <br> 4шт</figcaption>
                 <span class="price">64.00 грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn19">Add</button>
+                <button class="btn addButton" id="btn19">Додати</button>
             </div>
 
             <div class="item nuggets" data-initial-price="91">
                 <img src="ng2.jpg" alt="" class="img">
-                <figcaption>Чікен МакНагетс, <br> 6шт</figcaption>
+                <figcaption>Чікен <br> МакНагетс, <br> 6шт</figcaption>
                 <span class="price">91.00 грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn20">Add</button>
+                <button class="btn addButton" id="btn20">Додати</button>
             </div>
 
             <div class="item nuggets" data-initial-price="129">
                 <img src="ng3.jpg" alt="" class="img">
-                <figcaption>Чікен МакНагетс, <br> 9шт</figcaption>
+                <figcaption>Чікен <br> МакНагетс, <br> 9шт</figcaption>
                 <span class="price">129.00 грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn21">Add</button>
+                <button class="btn addButton" id="btn21">Додати</button>
             </div>
 
             <div class="item nuggets" data-initial-price="273">
                 <img src="ng4.jpg" alt="" class="img">
-                <figcaption>Чікен МакНагетс, <br> 20шт</figcaption>
+                <figcaption>Чікен <br> МакНагетс, <br> 20шт</figcaption>
                 <span class="price">273.00 грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn22">Add</button>
+                <button class="btn addButton" id="btn22">Додати</button>
             </div>
 
             <div class="item nuggets" data-initial-price="86">
@@ -320,7 +363,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn23">Add</button>
+                <button class="btn addButton" id="btn23">Додати</button>
             </div>
 
             <div class="item nuggets" data-initial-price="148">
@@ -332,7 +375,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn24">Add</button>
+                <button class="btn addButton" id="btn24">Додати</button>
             </div>
 
             <div class="item nuggets" data-initial-price="273">
@@ -344,19 +387,19 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn25">Add</button>
+                <button class="btn addButton" id="btn25">Додати</button>
             </div>
 
             <div class="item nuggets" data-initial-price="273">
                 <img src="ng8.jpg" alt="" class="img">
-                <figcaption>Стріпси Чікен Бокс</figcaption>
+                <figcaption>Стріпси <br> Чікен Бокс</figcaption>
                 <span class="price">273.00 грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn26">Add</button>
+                <button class="btn addButton" id="btn26">Додати</button>
             </div>
 
             <div class="item nuggets" data-initial-price="96">
@@ -368,7 +411,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn27">Add</button>
+                <button class="btn addButton" id="btn27">Додати</button>
             </div>
 
             <div class="item nuggets" data-initial-price="148">
@@ -380,7 +423,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn28">Add</button>
+                <button class="btn addButton" id="btn28">Додати</button>
             </div>
 
             <div class="item nuggets" data-initial-price="229">
@@ -392,7 +435,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn29">Add</button>
+                <button class="btn addButton" id="btn29">Додати</button>
             </div>
 
             <div class="item nuggets" data-initial-price="273">
@@ -404,7 +447,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn30">Add</button>
+                <button class="btn addButton" id="btn30">Додати</button>
             </div>
 
             <div class="item nuggets" data-initial-price="273">
@@ -416,7 +459,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn31">Add</button>
+                <button class="btn addButton" id="btn31">Додати</button>
             </div>
 
             <div class="item sauce" data-initial-price="27">
@@ -428,7 +471,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn32">Add</button>
+                <button class="btn addButton" id="btn32">Додати</button>
             </div>
 
             <div class="item sauce" data-initial-price="27">
@@ -440,7 +483,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn33">Add</button>
+                <button class="btn addButton" id="btn33">Додати</button>
             </div>
 
             <div class="item sauce" data-initial-price="16">
@@ -452,7 +495,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn34">Add</button>
+                <button class="btn addButton" id="btn34">Додати</button>
             </div>
 
             <div class="item sauce" data-initial-price="16">
@@ -464,7 +507,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn35">Add</button>
+                <button class="btn addButton" id="btn35">Додати</button>
             </div>
 
             <div class="item sauce" data-initial-price="16">
@@ -476,7 +519,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn36">Add</button>
+                <button class="btn addButton" id="btn36">Додати</button>
             </div>
 
             <div class="item sauce" data-initial-price="16">
@@ -488,7 +531,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn37">Add</button>
+                <button class="btn addButton" id="btn37">Додати</button>
             </div>
 
             <div class="item sauce" data-initial-price="16">
@@ -500,7 +543,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn38">Add</button>
+                <button class="btn addButton" id="btn38">Додати</button>
             </div>
 
             <div class="item sauce" data-initial-price="16">
@@ -512,7 +555,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn39">Add</button>
+                <button class="btn addButton" id="btn39">Додати</button>
             </div>
 
             <div class="item sauce" data-initial-price="16">
@@ -524,7 +567,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn40">Add</button>
+                <button class="btn addButton" id="btn40">Додати</button>
             </div>
 
             <div class="item sauce" data-initial-price="16">
@@ -536,7 +579,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn41">Add</button>
+                <button class="btn addButton" id="btn41">Додати</button>
             </div>
 
             <div class="item sauce" data-initial-price="19">
@@ -548,7 +591,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn42">Add</button>
+                <button class="btn addButton" id="btn42">Додати</button>
             </div>
 
             <div class="item sauce" data-initial-price="10">
@@ -560,19 +603,19 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn43">Add</button>
+                <button class="btn addButton" id="btn43">Додати</button>
             </div>
 
             <div class="item sauce" data-initial-price="10">
                 <img src="s13.jpg" alt="" class="img">
-                <figcaption>Сироп "Смажений <br> лісовий горіх"</figcaption>
+                <figcaption>Сироп <br> "Смажений <br> лісовий горіх"</figcaption>
                 <span class="price">10.00 грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn44">Add</button>
+                <button class="btn addButton" id="btn44">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="64">
@@ -584,7 +627,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn45">Add</button>
+                <button class="btn addButton" id="btn45">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="53">
@@ -596,7 +639,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn46">Add</button>
+                <button class="btn addButton" id="btn46">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="46">
@@ -608,7 +651,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn47">Add</button>
+                <button class="btn addButton" id="btn47">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="64">
@@ -620,7 +663,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn48">Add</button>
+                <button class="btn addButton" id="btn48">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="64">
@@ -632,7 +675,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn49">Add</button>
+                <button class="btn addButton" id="btn49">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="64">
@@ -644,7 +687,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn50">Add</button>
+                <button class="btn addButton" id="btn50">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="60">
@@ -656,7 +699,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn51">Add</button>
+                <button class="btn addButton" id="btn51">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="60">
@@ -668,7 +711,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn52">Add</button>
+                <button class="btn addButton" id="btn52">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="60">
@@ -680,7 +723,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn53">Add</button>
+                <button class="btn addButton" id="btn53">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="75">
@@ -692,7 +735,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn54">Add</button>
+                <button class="btn addButton" id="btn54">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="75">
@@ -704,7 +747,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn55">Add</button>
+                <button class="btn addButton" id="btn55">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="75">
@@ -716,7 +759,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn56">Add</button>
+                <button class="btn addButton" id="btn56">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="71">
@@ -728,7 +771,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn57">Add</button>
+                <button class="btn addButton" id="btn57">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="71">
@@ -740,7 +783,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn58">Add</button>
+                <button class="btn addButton" id="btn58">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="71">
@@ -752,7 +795,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn59">Add</button>
+                <button class="btn addButton" id="btn59">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="46">
@@ -764,7 +807,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn60">Add</button>
+                <button class="btn addButton" id="btn60">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="53">
@@ -776,7 +819,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn61">Add</button>
+                <button class="btn addButton" id="btn61">Додати</button>
             </div>
 
             <div class="item dessert" data-initial-price="53">
@@ -788,7 +831,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn62">Add</button>
+                <button class="btn addButton" id="btn62">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="42">
@@ -800,7 +843,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn63">Add</button>
+                <button class="btn addButton" id="btn63">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="35">
@@ -812,7 +855,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn64">Add</button>
+                <button class="btn addButton" id="btn64">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="29">
@@ -824,7 +867,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn65">Add</button>
+                <button class="btn addButton" id="btn65">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="42">
@@ -836,7 +879,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn66">Add</button>
+                <button class="btn addButton" id="btn66">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="35">
@@ -848,7 +891,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn67">Add</button>
+                <button class="btn addButton" id="btn67">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="29">
@@ -860,7 +903,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn68">Add</button>
+                <button class="btn addButton" id="btn68">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="42">
@@ -872,7 +915,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn69">Add</button>
+                <button class="btn addButton" id="btn69">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="35">
@@ -884,7 +927,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn70">Add</button>
+                <button class="btn addButton" id="btn70">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="29">
@@ -896,7 +939,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn71">Add</button>
+                <button class="btn addButton" id="btn71">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="21">
@@ -908,7 +951,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn72">Add</button>
+                <button class="btn addButton" id="btn72">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="19">
@@ -920,7 +963,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn73">Add</button>
+                <button class="btn addButton" id="btn73">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="21">
@@ -932,7 +975,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn74">Add</button>
+                <button class="btn addButton" id="btn74">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="19">
@@ -944,31 +987,31 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn75">Add</button>
+                <button class="btn addButton" id="btn75">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="">
                 <img src="dr14.jpg" alt="" class="img">
-                <figcaption>Апельсиновий сік <br> Великий</figcaption>
+                <figcaption>Апельсиновий <br> сік <br> Великий</figcaption>
                 <span class="price">42.00   грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn76">Add</button>
+                <button class="btn addButton" id="btn76">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="32">
                 <img src="dr15.jpg" alt="" class="img">
-                <figcaption>Апельсиновий сік <br> Маленький</figcaption>
+                <figcaption>Апельсиновий <br> сік <br> Маленький</figcaption>
                 <span class="price">32.00 грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn77">Add</button>
+                <button class="btn addButton" id="btn77">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="27">
@@ -980,7 +1023,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn78">Add</button>
+                <button class="btn addButton" id="btn78">Додати</button>
             </div>
 
             <div class="item drinks" data-initial-price="27">
@@ -992,7 +1035,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn79">Add</button>
+                <button class="btn addButton" id="btn79">Додати</button>
             </div>
             
             <div class="item coffee" data-initial-price="60">
@@ -1004,7 +1047,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn80">Add</button>
+                <button class="btn addButton" id="btn80">Додати</button>
             </div>
             
             <div class="item coffee" data-initial-price="65">
@@ -1016,115 +1059,115 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn81">Add</button>
+                <button class="btn addButton" id="btn81">Додати</button>
             </div>
 
             <div class="item coffee" data-initial-price="56">
                 <img src="c3.jpg" alt="" class="img">
-                <figcaption>Кава "Американо" <br> маленька</figcaption>
+                <figcaption>Кава <br>"Американо" <br> маленька</figcaption>
                 <span class="price">56.00 грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn82">Add</button>
+                <button class="btn addButton" id="btn82">Додати</button>
             </div>
 
             <div class="item coffee" data-initial-price="62">
                 <img src="c4.jpg" alt="" class="img">
-                <figcaption>Кава "Американо <br> з молоком" <br> маленька</figcaption>
+                <figcaption>Кава <br> "Американо <br> з молоком" <br> маленька</figcaption>
                 <span class="price">62.00 грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn83">Add</button>
+                <button class="btn addButton" id="btn83">Додати</button>
             </div>
 
             <div class="item coffee" data-initial-price="62">
                 <img src="c5.jpg" alt="" class="img">
-                <figcaption>Кава "Капучино" <br> маленька</figcaption>
+                <figcaption>Кава <br> "Капучино" <br> маленька</figcaption>
                 <span class="price">62.00 грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn84">Add</button>
+                <button class="btn addButton" id="btn84">Додати</button>
             </div>
 
             <div class="item coffee" data-initial-price="62">
                 <img src="c6.jpg" alt="" class="img">
-                <figcaption>Кава "Лате" <br> маленька</figcaption>
+                <figcaption>Кава <br> "Лате" <br> маленька</figcaption>
                 <span class="price">62.00 грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn85">Add</button>
+                <button class="btn addButton" id="btn85">Додати</button>
             </div>
 
             <div class="item coffee" data-initial-price="67">
                 <img src="c7.jpg" alt="" class="img">
-                <figcaption>Кава "Американо" <br> класік</figcaption>
+                <figcaption>Кава <br>"Американо" <br> класік</figcaption>
                 <span class="price">67.00 грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn86">Add</button>
+                <button class="btn addButton" id="btn86">Додати</button>
             </div>
 
             <div class="item coffee" data-initial-price="62">
                 <img src="c8.jpg" alt="" class="img">
-                <figcaption>Кава "Американо <br> з  молоком" <br> класік</figcaption>
+                <figcaption>Кава <br> "Американо <br> з  молоком" <br> класік</figcaption>
                 <span class="price">62.00 грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn87">Add</button>
+                <button class="btn addButton" id="btn87">Додати</button>
             </div>
 
             <div class="item coffee" data-initial-price="62">
                 <img src="c9.jpg" alt="" class="img">
-                <figcaption>Кава "Капучино" <br> класік</figcaption>
+                <figcaption>Кава <br> "Капучино" <br> класік</figcaption>
                 <span class="price">62.00 грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn88">Add</button>
+                <button class="btn addButton" id="btn88">Додати</button>
             </div>
 
             <div class="item coffee" data-initial-price="62">
                 <img src="c10.jpg" alt="" class="img">
-                <figcaption>Кава "Лате" <br> класік</figcaption>
+                <figcaption>Кава <br> "Лате" <br> класік</figcaption>
                 <span class="price">62.00 грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn89">Add</button>
+                <button class="btn addButton" id="btn89">Додати</button>
             </div>
 
             <div class="item coffee" data-initial-price="67">
                 <img src="c11.jpg" alt="" class="img">
-                <figcaption>Кава "Флет Вайт"</figcaption>
+                <figcaption>Кава <br> "Флет Вайт"</figcaption>
                 <span class="price">67.00 грн</span>
                 <div class="quantity-container">
                     <button class="minus-btn" id="minusBtn1">-</button>
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn90">Add</button>
+                <button class="btn addButton" id="btn90">Додати</button>
             </div>
 
             <div class="item coffee" data-initial-price="62">
@@ -1136,7 +1179,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn91">Add</button>
+                <button class="btn addButton" id="btn91">Додати</button>
             </div>
 
             <div class="item coffee" data-initial-price="72">
@@ -1148,7 +1191,7 @@
                     <span class="quantity" id="quantity1">1</span>
                     <button class="plus-btn" id="plusBtn1">+</button>
                 </div>
-                <button class="btn addButton" id="btn92">Add</button>
+                <button class="btn addButton" id="btn92">Додати</button>
             </div>
 		</div>
 	</div>
