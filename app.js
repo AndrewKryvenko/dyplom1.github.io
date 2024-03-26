@@ -1115,29 +1115,63 @@ btn92.addEventListener("click", function(){
 });
 
 ////////////// КУПИТЬ //////////////////////
+
+///////////////////////////////////////////
 document.addEventListener("DOMContentLoaded", function() {
-    const buyIcon = document.querySelector('.buy-icon'); // Находим иконку "Купить"
-    const quantityBadge = document.createElement('div'); // Создаем элемент для отображения количества выбранных товаров
-    quantityBadge.classList.add('quantity-badge'); // Добавляем класс для стилизации
-    quantityBadge.innerText = "0"; // Изначально количество товаров равно 0
-    buyIcon.parentNode.insertBefore(quantityBadge, buyIcon.nextSibling); // Вставляем элемент после иконки "Купить"
-
-    let totalQuantity = 0; // Переменная для хранения общего количества выбранных товаров
-
-    // Обработчик события для кнопки "Add"
-    const addButton = document.querySelectorAll('.addButton'); // Находим все кнопки "Add"
-    addButton.forEach(button => {
+    const buyIcon = document.getElementById('buyIcon');
+    const addButton = document.querySelectorAll('.addButton');
+    const items = document.querySelectorAll('.item');
+    const cartContainer = document.querySelector('.cart-items');
+    
+    let selectedItems = []; // Масив для зберігання вибраних товарів
+    
+    addButton.forEach(function(button, index) {
         button.addEventListener('click', function() {
-            const quantityDisplay = button.parentElement.querySelector('.quantity'); // Находим элемент, отображающий количество товаров
-            const quantity = parseInt(quantityDisplay.innerText); // Получаем текущее количество товаров и преобразуем его в число
-            totalQuantity += quantity; // Увеличиваем общее количество товаров на количество выбранных этим кликом
-            quantityBadge.innerText = totalQuantity; // Обновляем отображаемое количество товаров
+            const currentItem = items[index];
+            const currentButton = addButton[index];
+            
+            // Якщо кнопка має текст "Додати", це означає, що товар не був доданий раніше
+            if (currentButton.textContent === 'Додати') {
+                // Додаємо товар до списку вибраних товарів
+                selectedItems.push(currentItem.outerHTML); // Зберігаємо HTML-код товару
+                
+                // Додаємо клас анімації при натисканні на кнопку "Додати"
+                buyIcon.classList.add('animate-buy-icon');
+                
+                // Видаляємо клас анімації через деякий час (наприклад, через 500 мілісекунд)
+                setTimeout(function() {
+                    buyIcon.classList.remove('animate-buy-icon');
+                }, 500); // Змініть значення часу в мілісекундах за вашим бажанням
+            } 
         });
     });
+    
+    buyIcon.addEventListener('click', function() {
+        // Сховати всі товари
+        items.forEach(function(item) {
+            item.style.display = 'none';
+        });
+        
+        // Відображаємо вибрані товари
+        selectedItems.forEach(function(item) {
+            const newItem = document.createElement('div');
+            newItem.classList.add('item');
+            newItem.innerHTML = item;
+            cartContainer.appendChild(newItem);
+        });
+    });
+
+    // Додаємо обробник кліку на кнопку "Видалити"
+    document.querySelector('.deleteButton').addEventListener('click', function() {
+        // Видаляємо всі елементи з класом 'item' з контейнера кошика
+        document.querySelectorAll('.item').forEach(function(item) {
+            item.remove();
+        });
+        
+        // Очищаємо список вибраних товарів
+        selectedItems = [];
+    });
 });
-///////////////////////////////////////////
-
-
 // КНОПКИ КОЛИЧЕСТВА
 ///////////////////////////////////////////////////////////////////////
 // Находим все кнопки minusBtn и plusBtn
@@ -1189,9 +1223,6 @@ for (let i = 0; i < minusBtns.length; i++) {
     });
 }
 
-Telegram.WebApp.onEvent("mainButtonClicked", function(){
-	tg.sendData(item);
-});
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -1269,6 +1300,12 @@ function loadFoodItems(foodType) {
 
 
 ///////////////////////////////////////////////////////////////////////
+
+Telegram.WebApp.onEvent("mainButtonClicked", function(){
+	tg.sendData(item);
+});
+
+
 let usercard = document.getElementById("usercard");
 
 let p = document.createElement("p");
