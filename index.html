@@ -8,17 +8,17 @@
 </head>
 <body>
 
-    <div class="sidebar" id="sidebar">
-        <img src="menu.png" alt="Меню" class="food-icon" data-food="Menu">
-        <img src="burger-icon.png" alt="Бургери" class="food-icon" data-food="burgers">
-        <img src="nuggets-icon.png" alt="Нагетси" class="food-icon" data-food="nuggets">
-        <img src="potato-icon.png" alt="Картофля Фрі" class="food-icon" data-food="potato">
-        <img src="sauce-icon.png" alt="Соуси" class="food-icon" data-food="sauce">
-        <img src="dessert-icon.png" alt="Десерти" class="food-icon" data-food="dessert">
-        <img src="drink-icon.png" alt="Напої" class="food-icon" data-food="drinks">
-        <img src="coffee-icon.png" alt="Кава" class="food-icon" data-food="coffee">
-        <img src="buy-icon.png" alt="Купити" class="buy-icon" data-food="buy">
-    </div>
+        <div class="sidebar" id="sidebar">
+            <img src="menu.png" alt="Меню" class="food-icon" data-food="Menu">
+            <img src="burger-icon.png" alt="Бургери" class="food-icon" data-food="burgers">
+            <img src="nuggets-icon.png" alt="Нагетси" class="food-icon" data-food="nuggets">
+            <img src="potato-icon.png" alt="Картофля Фрі" class="food-icon" data-food="potato">
+            <img src="sauce-icon.png" alt="Соуси" class="food-icon" data-food="sauce">
+            <img src="dessert-icon.png" alt="Десерти" class="food-icon" data-food="dessert">
+            <img src="drink-icon.png" alt="Напої" class="food-icon" data-food="drinks">
+            <img src="coffee-icon.png" alt="Кава" class="food-icon" data-food="coffee">
+            <img src="buy-icon.png" alt="Корзина" class="buy-icon" id="buyIcon" data-food="buy">
+        </div>
 
     <script>
         const sidebar = document.getElementById('sidebar');
@@ -46,47 +46,7 @@
         });
     </script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const addButton = document.querySelectorAll('.addButton');
-            const buyIcon = document.querySelector('.buy-icon');
-            const items = document.querySelectorAll('.item');
-            const container = document.querySelector('.container');
     
-            let selectedFoodIndexes = []; // Массив для хранения индексов выбранных товаров
-    
-            addButton.forEach((button, index) => {
-                button.addEventListener('click', function() {
-                    selectedFoodIndexes.push(index); // Добавляем индекс выбранного товара в массив
-                });
-            });
-    
-            buyIcon.addEventListener('click', function() {
-                if (selectedFoodIndexes.length > 0) {
-                    container.innerHTML = ''; // Очищаем контейнер перед добавлением выбранных товаров
-    
-                    selectedFoodIndexes.forEach(index => {
-                        const selectedItem = items[index].cloneNode(true); // Клонируем выбранный товар
-                        container.appendChild(selectedItem); // Добавляем клонированный товар в контейнер
-                    });
-    
-                    // Показываем контейнер с выбранными товарами
-                    container.style.display = 'flex';
-                    container.style.
-    
-                    // Скрываем все товары, кроме выбранных
-                    items.forEach((item, index) => {
-                        if (!selectedFoodIndexes.includes(index)) {
-                            item.style.display = 'none';
-                        }
-                    });
-                } else {
-                    alert("Пожалуйста, сначала выберите товар.");
-                }
-            });
-        });
-    </script>
-
 
 	<div class="container">
 		<div class="inner">
