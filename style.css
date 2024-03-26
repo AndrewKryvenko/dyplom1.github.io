@@ -18,7 +18,21 @@ body {
     cursor: pointer;
     
 }
+.animate-buy-icon {
+    animation: pulse-buy-icon 0.5s ease-in-out;
+}
 
+@keyframes pulse-buy-icon {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
 .buy-icon {
     display: block;
     margin-bottom: 10px;
@@ -26,11 +40,7 @@ body {
     width: 48px;
     height: 48px;
     background-size: cover;
-    transition: transform 0.3s ease;
 }
-.buy-icon:hover {
-    transform: scale(1.1);
-  }
 
 .container {
 	max-width: 300px;
@@ -81,6 +91,19 @@ figcaption {
 
 /* //////////////////КНОПКА ДОБАВИТЬ///////////////////*/
 .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    background: rgb(248, 168, 24);
+    border-radius: 10px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    width: 100px; /* Фиксируем ширину кнопки */
+    transition: all 0.2s ease; /* Добавляем плавный переход для всех свойств */
+}
+
+.deleteButton {
     display: inline-block;
     padding: 10px 20px;
     border: none;
