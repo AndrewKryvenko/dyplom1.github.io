@@ -109,7 +109,8 @@ PRICE = {
 async def buy_process(web_app_message):
     quantity = int(web_app_message.web_app_data.data)
     price_label = f'Item{quantity}'
-    labeled_price = types.LabeledPrice(label=price_label, amount=PRICE[str(quantity)][0].amount * quantity)
+    labeled_price_amount = PRICE[str(quantity)] * quantity
+    labeled_price = types.LabeledPrice(label=price_label, amount=labeled_price_amount)
     await bot.send_invoice(web_app_message.chat.id,
                            title='Laptop',
                            description='Description',
